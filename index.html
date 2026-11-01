@@ -597,10 +597,38 @@ nav a:hover {
           <h2>Shop by Category</h2>
         </div>
         <div class="categories">
-          <button class="category" data-category="Fashion"><span>🍂</span><strong>Fall Fashion</strong></button>
-          <button class="category" data-category="Home"><span>🏡</span><strong>Cozy Home</strong></button>
-          <button class="category" data-category="Kitchen"><span>☕</span><strong>Kitchen & Coffee</strong></button>
-          <button class="category" data-category="Beauty"><span>💅</span><strong>Beauty Finds</strong></button>
+/* VibeFind photo category cards */
+.category {
+  padding: 0 0 16px;
+  overflow: hidden;
+}
+.category .category-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin: 0 0 15px;
+  background-image: url("Shop%20by%20Category_%20Cozy%20Collection.png");
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  font-size: 0;
+}
+.category .fashion-photo {
+  background-position: left top;
+}
+.category .home-photo {
+  background-position: right top;
+}
+.category .kitchen-photo {
+  background-position: left bottom;
+}
+.category .beauty-photo {
+  background-position: right bottom;
+}
+.category strong {
+  display: block;
+  padding: 0 8px;
+}
+ton>
         </div>
       </div>
     </section>
