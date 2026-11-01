@@ -176,14 +176,12 @@ h1 {
     info.appendChild(disclosure);
     card.append(imageBox, info);
     area.replaceChildren(card);
-    
 // Explore More Finds button
 const explore = document.createElement("a");
 explore.href = "./#shop";
 explore.className = "more-finds-btn";
 explore.textContent = "Explore More Finds";
 info.insertBefore(explore, disclosure);
-
 // You May Also Like section
 try {
   const relatedEndpoint =
@@ -194,23 +192,17 @@ try {
   const relatedResponse = await fetch(relatedEndpoint, {
     headers: { apikey: key }
   });
-
   if (!relatedResponse.ok) throw new Error("Related products unavailable");
-
   const relatedProducts = (await relatedResponse.json())
     .filter(item => item.id !== id)
     .slice(0, 4);
-
   if (relatedProducts.length) {
     const section = document.createElement("section");
     section.className = "related-section";
-
     const heading = document.createElement("h2");
     heading.textContent = "You May Also Like";
-
     const grid = document.createElement("div");
     grid.className = "related-grid";
-
     relatedProducts.forEach(item => {
       const link = document.createElement("a");
       link.className = "related-card";
