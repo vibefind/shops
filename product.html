@@ -176,6 +176,72 @@ h1 {
     info.appendChild(disclosure);
     card.append(imageBox, info);
     area.replaceChildren(card);
+    
+// Explore More Finds button
+const explore = document.createElement("a");
+explore.href = "./#shop";
+explore.className = "more-finds-btn";
+explore.textContent = "Explore More Finds";
+info.insertBefore(explore, disclosure);
+
+// You May Also Like section
+try {
+  const relatedEndpoint =
+    base + "/rest/v1/products?select=id,name,category,image_url" +
+    "&category=eq." + encodeURIComponent(product.category) +
+    "&order=created_at.desc&limit=40";
+
+  const relatedResponse = await fetch(relatedEndpoint, {
+    headers: { apikey: key }
+  });
+
+  if (!relatedResponse.ok) throw new Error("Related products unavailable");
+
+  const relatedProducts = (await relatedResponse.json())
+    .filter(item => item.id !== id)
+    .slice(0, 4);
+
+  if (relatedProducts.length) {
+    const section = document.createElement("section");
+    section.className = "related-section";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "You May Also Like";
+
+    const grid = document.createElement("div");
+    grid.className = "related-grid";
+
+    relatedProducts.forEach(item => {
+      const link = document.createElement("a");
+      link.className = "related-card";
+      link.href = "product.html?id=" + encodeURIComponent(item.id);
+
+      const imageUrl = safeUrl(item.image_url);
+      if (imageUrl) {
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = item.name || "VibeFind product";
+        image.loading = "lazy";
+        link.appendChild(image);
+      }
+
+      const name = document.createElement("strong");
+      name.textContent = item.name || "Product";
+
+      const view = document.createElement("span");
+      view.textContent = "View Product";
+
+      link.append(name, view);
+      grid.appendChild(link);
+    });
+
+    section.append(heading, grid);
+    area.appendChild(section);
+  }
+} catch (relatedError) {
+  console.warn("Related products could not load.", relatedError);
+}
+
   } catch (error) {
     area.textContent = "Product temporarily unavailable.";
     console.error(error);
