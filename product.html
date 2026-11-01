@@ -1,184 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Discover curated everyday finds at VibeFind.">
 <title>Product Details | VibeFind</title>
-<meta name="description" content="Explore curated fashion, home, beauty and kitchen finds at VibeFind.">
+
+<style>
+:root {
+  --cream: #faf7f1;
+  --brown: #604837;
+  --dark: #302922;
+  --olive: #77745b;
+  --line: #e9dfd3;
+}
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
-  background: #faf7f1;
-  color: #503b30;
+  background: var(--cream);
+  color: var(--dark);
   font-family: Arial, sans-serif;
-  line-height: 1.6;
 }
+
 header {
   background: #fffdf9;
-  padding: 22px 7%;
-  border-bottom: 1px solid #eaded4;
+  border-bottom: 1px solid var(--line);
+  padding: 22px 6%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
+
 .logo {
-  font-family: Georgia, serif;
-  font-size: 28px;
-  font-weight: bold;
-  color: #654638;
+  font: bold 30px Georgia, serif;
+  color: var(--brown);
   text-decoration: none;
 }
+
 .back {
-  color: #654638;
+  font-size: 13px;
+  color: var(--brown);
   text-decoration: none;
-  font-size: 14px;
 }
-.container {
-  max-width: 950px;
+
+main {
+  max-width: 1100px;
   margin: 45px auto;
-  padding: 20px;
+  padding: 0 20px;
+  min-height: 55vh;
 }
+
 .product {
-  background: white;
-  border: 1px solid #eaded4;
-  border-radius: 18px;
-  padding: 30px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 32px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(55,37,22,.05);
 }
-.product img {
+
+.photo {
+  background: #f7f2eb;
+  border-radius: 14px;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.photo img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  max-height: 460px;
   object-fit: contain;
-  border-radius: 12px;
-  background: #faf7f1;
+  display: block;
 }
-h1 {
-  font-family: Georgia, serif;
-  font-size: 32px;
-  line-height: 1.25;
-}
+
 .category {
-  color: #98775f;
-  font-size: 12px;
+  color: var(--olive);
   text-transform: uppercase;
   letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: bold;
 }
+
+h1 {
+  font: normal clamp(27px, 4vw, 40px)/1.2 Georgia, serif;
+  color: var(--brown);
+  margin: 18px 0;
+}
+
 .description {
   color: #716358;
   font-size: 15px;
-  margin: 20px 0;
+  line-height: 1.9;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
 }
-.shop {
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.btn {
   display: inline-block;
-  padding: 14px 28px;
-  background: #684b3a;
+  background: var(--brown);
   color: white;
-  text-decoration: none;
+  padding: 15px 24px;
   border-radius: 8px;
+  text-decoration: none;
   font-weight: bold;
+  text-align: center;
+  font-size: 14px;
 }
+
+.btn:hover { background: #80644e; }
+
+.btn.secondary {
+  background: #fff;
+  color: var(--brown);
+  border: 1px solid var(--brown);
+}
+
 .disclosure {
-  margin-top: 25px;
+  margin-top: 28px;
+  color: #827367;
   font-size: 12px;
-  color: #796b61;
+  line-height: 1.7;
 }
-@media (max-width: 650px) {
+
+.message {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  text-align: center;
+  padding: 55px 22px;
+  color: var(--brown);
+}
+
+.message h2 {
+  font: normal 28px Georgia, serif;
+}
+
+.message p {
+  line-height: 1.7;
+  color: #716358;
+}
+
+.retry {
+  cursor: pointer;
+  border: none;
+  margin-top: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  background: #302922;
+  color: #eee1d4;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  header { padding: 18px 5%; }
+  .logo { font-size: 25px; }
+  main { margin: 25px auto; }
   .product {
     grid-template-columns: 1fr;
     padding: 18px;
-    gap: 15px;
+    gap: 24px;
   }
-  h1 { font-size: 26px; }
+  .photo { min-height: 240px; }
+  .photo img { max-height: 340px; }
+  .buttons { flex-direction: column; }
+  .btn { width: 100%; }
 }
 </style>
 </head>
+
 <body>
+
 <header>
-  <a class="logo" href="./">VibeFind.</a>
-  <a class="back" href="./">← Back to Home</a>
+  <a class="logo" href="index.html">VibeFind.</a>
+  <a class="back" href="index.html#shop">
+    ← Back to All Finds
+  </a>
 </header>
-<main class="container">
-  <div id="product-area">Loading product...</div>
+
+<main>
+  <div id="product-area" aria-live="polite">
+    <div class="message">
+      <h2>Loading product...</h2>
+      <p>Finding your VibeFind favorite.</p>
+    </div>
+  </div>
 </main>
+
+<footer>
+  © VibeFind · Thoughtful Finds for Everyday Living
+</footer>
+
 <script>
-(async function () {
-  const area = document.getElementById("product-area");
-  const id = new URLSearchParams(location.search).get("id");
-  if (!id || !/^[0-9a-f-]{36}$/i.test(id)) {
-    area.textContent = "Product not found.";
+"use strict";
+
+// Existing VibeFind Supabase project
+const SUPABASE_URL =
+  "https://heshxrukrkcsgpdjhzhe.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
+
+const area = document.getElementById("product-area");
+
+function safeUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function showMessage(title, detail, retry = false) {
+  area.replaceChildren();
+
+  const box = document.createElement("div");
+  box.className = "message";
+
+  const heading = document.createElement("h2");
+  heading.textContent = title;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = detail;
+
+  box.append(heading, paragraph);
+
+  if (retry) {
+    const button = document.createElement("button");
+    button.className = "btn retry";
+    button.textContent = "Try Again";
+    button.onclick = loadProduct;
+    box.appendChild(button);
+  }
+
+  area.appendChild(box);
+}
+
+async function loadProduct() {
+  const id = new URLSearchParams(
+    window.location.search
+  ).get("id");
+
+  if (
+    !id ||
+    !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)
+  ) {
+    showMessage(
+      "Product link missing",
+      "Please open a product from the VibeFind homepage."
+    );
     return;
   }
-  const base = "https://heshxrukrkcsgpdjhzhe.supabase.co";
-  const key = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
-  function safeUrl(value) {
-    try {
-      const url = new URL(value);
-      return url.protocol === "https:" ? url.href : null;
-    } catch {
-      return null;
-    }
-  }
+
+  showMessage(
+    "Loading product...",
+    "Finding your VibeFind favorite."
+  );
+
+  const controller = new AbortController();
+  const timeout = setTimeout(
+    () => controller.abort(),
+    10000
+  );
+
   try {
-    const endpoint =
-      base + "/rest/v1/products?id=eq." +
-      encodeURIComponent(id) +
-      "&select=name,category,description,image_url,affiliate_link&limit=1";
-    const response = await fetch(endpoint, {
-      headers: { apikey: key }
+    const endpoint = new URL(
+      SUPABASE_URL + "/rest/v1/products"
+    );
+
+    endpoint.searchParams.set("id", "eq." + id);
+    endpoint.searchParams.set(
+      "select",
+      "id,name,category,description,image_url,affiliate_link"
+    );
+    endpoint.searchParams.set("limit", "1");
+
+    const response = await fetch(endpoint.href, {
+      method: "GET",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Accept": "application/json"
+      },
+      signal: controller.signal
     });
-    if (!response.ok) throw new Error("Request failed");
+
+    if (!response.ok) {
+      throw new Error(
+        "Database request failed (HTTP " +
+        response.status + ")"
+      );
+    }
+
     const products = await response.json();
-    const product = products[0];
-    if (!product) {
-      area.textContent = "Product not found.";
+
+    if (!Array.isArray(products)) {
+      throw new Error("Unexpected database response");
+    }
+
+    if (!products.length) {
+      showMessage(
+        "Product not found",
+        "This product may have been removed or is not available."
+      );
       return;
     }
-    document.title = product.name + " | VibeFind";
-    const card = document.createElement("article");
-    card.className = "product";
-    const imageBox = document.createElement("div");
-    const imageUrl = safeUrl(product.image_url);
-    if (imageUrl) {
-      const image = document.createElement("img");
-      image.src = imageUrl;
-      image.alt = product.name;
-      imageBox.appendChild(image);
-    }
-    const info = document.createElement("div");
-    const category = document.createElement("div");
-    category.className = "category";
-    category.textContent = product.category || "VibeFind Find";
-    const title = document.createElement("h1");
-    title.textContent = product.name || "Product";
-    const description = document.createElement("p");
-    description.className = "description";
-    description.textContent = product.description || ""; 
-    const disclosure = document.createElement("p");
-    disclosure.className = "disclosure";
-    disclosure.textContent =
-      "As an Amazon Associate I earn from qualifying purchases. Some links may be affiliate links.";
-    info.append(category, title, description);
-    const affiliateUrl = safeUrl(product.affiliate_link);
-    if (affiliateUrl) {
-      const button = document.createElement("a");
-      button.className = "shop";
-      button.href = affiliateUrl;
-      button.target = "_blank";
-      button.rel = "noopener noreferrer sponsored";
-      button.textContent = "View on Amazon";
-      info.appendChild(button);
-    }
-    info.appendChild(disclosure);
-    card.append(imageBox, info);
-    area.replaceChildren(card);
+
+    renderProduct(products[0]);
+
   } catch (error) {
-    area.textContent = "Product temporarily unavailable.";
-    console.error(error);
+    console.error("VibeFind error:", error);
+
+    const detail = error.name === "AbortError"
+      ? "The database request timed out. Please try again."
+      : "Unable to load product. " + error.message;
+
+    showMessage(
+      "We couldn't load this product",
+      detail,
+      true
+    );
+  } finally {
+    clearTimeout(timeout);
   }
-})();
+}
+
+function renderProduct(product) {
+  area.replaceChildren();
+
+  const name = product.name || "VibeFind Product";
+  document.title = name + " | VibeFind";
+
+  const card = document.createElement("article");
+  card.className = "product";
+
+  const photo = document.createElement("div");
+  photo.className = "photo";
+
+  const imageUrl = safeUrl(product.image_url);
+
+  if (imageUrl) {
+    const image = document.createElement("img");
+    image.src = imageUrl;
+    image.alt = name;
+    image.loading = "eager";
+    image.onerror = () => {
+      photo.textContent = "Image unavailable";
+    };
+    photo.appendChild(image);
+  } else {
+    photo.textContent = "Image unavailable";
+  }
+
+  const info = document.createElement("div");
+
+  const category = document.createElement("span");
+  category.className = "category";
+  category.textContent =
+    product.category || "Curated Find";
+
+  const title = document.createElement("h1");
+  title.textContent = name;
+
+  const description = document.createElement("p");
+  description.className = "description";
+  description.textContent =
+    product.description ||
+    "Discover this curated VibeFind favorite.";
+
+  const buttons = document.createElement("div");
+  buttons.className = "buttons";
+
+  const shopUrl = safeUrl(product.affiliate_link);
+
+  if (shopUrl) {
+    const shop = document.createElement("a");
+    shop.className = "btn";
+    shop.href = shopUrl;
+    shop.target = "_blank";
+    shop.rel = "noopener noreferrer sponsored";
+    shop.textContent = "Shop This Find";
+    buttons.appendChild(shop);
+  }
+
+  const explore = document.createElement("a");
+  explore.href = "index.html#shop";
+  explore.className = "btn secondary";
+  explore.textContent = "Explore More Finds";
+  buttons.appendChild(explore);
+
+  const disclosure = document.createElement("p");
+  disclosure.className = "disclosure";
+  disclosure.textContent =
+    "This page may contain affiliate links. " +
+    "As an Amazon Associate I earn from qualifying purchases.";
+
+  info.append(
+    category,
+    title,
+    description,
+    buttons,
+    disclosure
+  );
+
+  card.append(photo, info);
+  area.appendChild(card);
+}
+
+// Start automatically when the page opens
+loadProduct();
 </script>
+
 </body>
 </html>
