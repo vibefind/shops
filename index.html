@@ -707,7 +707,8 @@ nav a:hover {
     async function loadProducts() {
       grid.textContent = "Loading products...";
       try {
-        const endpoint = SUPABASE_URL + "/rest/v1/products?select=name,category,description,image_url,affiliate_link&order=created_at.desc";
+        
+const endpoint = SUPABASE_URL + "/rest/v1/products?select=id,name,category,description,image_url,affiliate_link&order=created_at.desc";
         const response = await fetch(endpoint, {
           headers: { "apikey": SUPABASE_KEY }
         });
@@ -765,15 +766,15 @@ nav a:hover {
         title.textContent = product.name || "Product";
         const description = document.createElement("p");
         description.textContent = product.description || "";
-        const url = httpsUrl(product.affiliate_link);
-        const button = document.createElement(url ? "a" : "span");
-        button.className = "btn";
-        button.textContent = url ? "Explore Find" : "Link unavailable";
-        if (url) {
-          button.href = url;
-          button.target = "_blank";
-          button.rel = "noopener noreferrer sponsored";
-        }
+const productLink = product.id
+  ? "product.html?id=" + encodeURIComponent(product.id)
+  : null;
+const button = document.createElement(productLink ? "a" : "span");
+button.className = "btn";
+button.textContent = productLink ? "View Product" : "Link unavailable";
+if (productLink) {
+  button.href = productLink;
+}
 body.append(type, title, description, button);
         card.append(photo, body);
         grid.appendChild(card);
