@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VibeFind Product Helper</title>
+<style>
+:root{--bg:#faf7f1;--card:#ffffff;--text:#503b30;--muted:#796b61;--accent:#684b3a;--on-accent:#ffffff;--border:#eaded4;--warn:#9a3b1f;--warn-bg:#fbeae3;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1814;--card:#2a211b;--text:#f1e8dc;--muted:#bfae9d;--accent:#c79a7b;--on-accent:#1f1814;--border:#44362c;--warn:#f1b49b;--warn-bg:#3b2219;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1f1814;--card:#2a211b;--text:#f1e8dc;--muted:#bfae9d;--accent:#c79a7b;--on-accent:#1f1814;--border:#44362c;--warn:#f1b49b;--warn-bg:#3b2219;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.6}
+main{max-width:760px;margin:0 auto;padding:28px 18px 60px}
+h1{font-family:Georgia,serif;font-size:28px;margin:0 0 4px;font-weight:normal}
+.sub{color:var(--muted);font-size:14px;margin:0 0 22px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:bold;margin:0 0 6px}
+textarea,select{width:100%;font:inherit;font-size:14px;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+textarea{resize:vertical;min-height:84px}
+.row{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:14px}
+@media(min-width:600px){.row{grid-template-columns:1fr 1fr}}
+button{font:inherit;font-size:14px;font-weight:bold;cursor:pointer;border-radius:8px;border:1px solid var(--accent);padding:10px 18px}
+.primary{background:var(--accent);color:var(--on-accent)}
+.ghost{background:transparent;color:var(--accent);padding:6px 12px;font-size:13px}
+button:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.warn{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:10px 12px;font-size:13px;margin-bottom:16px}
+.field{margin-bottom:18px}
+.field:last-child{margin-bottom:0}
+.head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.head label{margin:0}
+.count{font-size:12px;color:var(--muted)}
+.count.over{color:var(--warn);font-weight:bold}
+.note{font-size:12px;color:var(--muted);margin:0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <h1>VibeFind Product Helper</h1>
+  <p class="sub">Paste an Amazon product name and get ready-to-paste copy for your website and Pinterest.</p>
+
+  <section class="card">
+    <div style="margin-bottom:14px">
+      <label for="name">Product name (same name you use on the site)</label>
+      <textarea id="name" placeholder="Paste the product name"></textarea>
+    </div>
+    <div class="row">
+      <div>
+        <label for="cat">Category</label>
+        <select id="cat">
+          <option>Fashion</option>
+          <option>Home</option>
+          <option>Kitchen &amp; Coffee</option>
+          <option>Beauty</option>
+        </select>
+      </div>
+      <div>
+        <label for="extra">Extra detail from the listing (optional)</label>
+        <textarea id="extra" style="min-height:42px" placeholder="Example: machine washable"></textarea>
+      </div>
+    </div>
+    <div style="margin-bottom:14px"><label for="tone">Tone</label><select id="tone"><option>Cozy</option><option>Simple</option><option>Playful</option><option>Elegant</option></select></div>
+    <button class="primary" id="go" type="button">Create copy</button>
+    <p id="err" class="note" style="margin-top:10px;color:var(--warn)" hidden>Paste a product name first.</p>
+  </section>
+
+  <section id="out" hidden>
+    <div id="flags" class="warn" hidden></div>
+    <div class="card" id="fields"></div>
+    <p class="note">Use only details that appear in the Amazon listing. Skip prices, rankings, and medical claims. Edit any box before copying.</p>
+  </section>
+</main>
+
+<script>
+(function(){
+  var CAT={
+    "Fashion":{lead:"Add the {s} to your everyday outfits.",card:"An easy find for everyday outfits.",title:"Fashion Find",tags:["#fashionfinds","#outfitideas"],word:"fashion"},
+    "Home":{lead:"Bring a cozy touch home with the {s}.",card:"A simple find for your space at home.",title:"Home Find",tags:["#homedecor","#homefinds"],word:"home"},
+    "Kitchen & Coffee":{lead:"Make your kitchen and coffee corner easier with the {s}.",card:"A handy find for your kitchen and coffee corner.",title:"Kitchen Find",tags:["#kitchenfinds","#coffeecorner"],word:"kitchen"},
+    "Beauty":{lead:"Add the {s} to your everyday routine.",card:"A simple find for your everyday routine.",title:"Beauty Find",tags:["#beautyfinds","#beautyroutine"],word:"beauty"}
+  };
+  var TONE={
+    Cozy:{"Fashion":["Layer up in the {s}, an easy favorite for everyday outfits.","A cozy, easy find for everyday outfits."],"Home":["Bring a cozy touch home with the {s}.","A cozy find for your space at home."],"Kitchen & Coffee":["Make your kitchen and coffee corner feel cozier with the {s}.","A cozy find for your kitchen and coffee corner."],"Beauty":["Add the {s} to your cozy everyday routine.","A simple find for your cozy everyday routine."]},
+    Simple:{"Fashion":["{s} for everyday outfits.","A simple find for everyday outfits."],"Home":["{s} for your home.","A simple find for your home."],"Kitchen & Coffee":["{s} for your kitchen and coffee corner.","A simple find for your kitchen."],"Beauty":["{s} for your everyday routine.","A simple find for your routine."]},
+    Playful:{"Fashion":["Outfit upgrade alert: meet the {s}!","A fun find to mix into your outfits."],"Home":["Say hello to your new home favorite: the {s}!","A fun little find for your space."],"Kitchen & Coffee":["Your kitchen just got more fun with the {s}!","A fun find for your kitchen and coffee corner."],"Beauty":["Treat your routine to the {s}!","A fun find for your everyday routine."]},
+    Elegant:{"Fashion":["Refine your everyday style with the {s}.","A polished find for everyday style."],"Home":["Elevate your space with the {s}.","A refined find for your home."],"Kitchen & Coffee":["Elevate your kitchen and coffee ritual with the {s}.","A refined find for your kitchen."],"Beauty":["Refine your daily ritual with the {s}.","A polished find for your daily routine."]}
+  };
+  var EXTRA={Cozy:"It is an easy way to add a little comfort to your day. See the full details on Amazon.",Simple:"See the full details, sizes, and options on Amazon.",Playful:"A fun pick you might end up using all the time. Tap through to see every detail on Amazon!",Elegant:"A thoughtful addition for a more polished everyday routine. View the full details on Amazon."};
+  var USE={"Fashion":"Pieces like this are easy to mix into outfits you already own, whether you are dressing for a casual day out, running errands, or relaxing at home. Check the size chart and fabric details on the listing before you order so you can choose the fit that works for you.","Home":"It is the kind of find that is easy to place in a bedroom, living room, or any corner that could use a little personality. Before you order, check the dimensions, color, and material on the listing so you know it will suit your space.","Kitchen & Coffee":"It is a practical addition to a kitchen or coffee corner, and it is easy to picture in a busy morning routine. Before you order, check the size, material, and care details on the listing so you know it fits your setup.","Beauty":"It is simple to fit into an everyday routine as one small step in your day. Before you use any beauty or skincare product, read the ingredients and directions on the listing, and test a small amount first if you have sensitive skin."};
+  function wordsCut(t,n){var w=t.split(/\s+/);if(w.length<=n)return t;var x=w.slice(0,n).join(" "),i=Math.max(x.lastIndexOf(". "),x.lastIndexOf("! "));if(i>0&&x.slice(0,i+1).split(/\s+/).length>=80)x=x.slice(0,i+1);return x}
+  var STOP="the and for with from your that this have into over under women womens mens men set pack piece pcs size inch inches".split(" ");
+  var FLAG=/best.?sell|#\s?1\b|\$\s?\d|lowest price|guarantee|\bcures?\b|treatment|clinically|dermatologist|number one|top.?rated|amazon.?s choice/i;
+  var LIMITS=[["SEO title",60,"seo"],["Meta description",155,"meta"],["Card description",155,"card"],["Product page description (paste in admin)",120,"page","words"],["Pin title",100,"ptitle"],["Pin description",500,"pdesc"],["Image alt text",125,"alt"]];
+  var el=function(i){return document.getElementById(i)};
+
+  function cut(t,n){
+    if(t.length<=n)return t;
+    var c=t.slice(0,n+1),i=c.lastIndexOf(" ");
+    return (i>n*0.6?c.slice(0,i):t.slice(0,n)).replace(/[\s,;:\-–—|]+$/,"");
+  }
+  function parts(raw){
+    var t=raw.replace(/\s+/g," ").trim();
+    var dim="";
+    var dm=t.match(/^(\d+(?:\.\d+)?\s?(?:"|”|in|inch|inches)?\s?[HWLD]?\s?x\s?\d+(?:\.\d+)?\s?(?:"|”|in|inch|inches)?\s?[HWLD]?)\s+(?=[A-Za-z])/i);
+    if(dm){dim=dm[1].trim();t=t.slice(dm[0].length)}
+    var first=t.split(/\s[–—-]\s|\s\|\s|,|\(/)[0].trim();
+    if(first.length<10)first=cut(t,50);
+    first=cut(first,55);
+    var rest=t.slice(first.length).replace(/^[\s,–—\-|(]+/,"").replace(/[()]/g,"");
+    var chunks=rest.split(/\s*[,–—|]\s*|\s-\s/).filter(function(x){return x&&x.length>2}).slice(0,3);
+    if(dim)chunks.unshift("size "+dim);
+    return {short:first,details:chunks.slice(0,3).join(", ")};
+  }
+  function tags(short,cat){
+    var w=short.toLowerCase().replace(/[^a-z\s]/g," ").split(/\s+/).filter(function(x){return x.length>3&&STOP.indexOf(x)<0});
+    var out=CAT[cat].tags.slice();
+    w.slice(-2).forEach(function(x){var h="#"+x;if(out.indexOf(h)<0)out.push(h)});
+    return out.join(" ");
+  }
+  function build(){
+    var raw=el("name").value.trim(),cat=el("cat").value,extra=el("extra").value.trim();
+    var c=CAT[cat],p=parts(raw),s=p.short,tn=(TONE[el("tone").value]||TONE.Cozy)[cat];
+    var det=[p.details,extra].filter(Boolean).join(", ");
+    var seo=cut(s,60-11)+" | VibeFind";
+    var lead=tn[0].replace("{s}",s);
+    var tail=" See it on Amazon.";
+    var meta=lead+tail;
+    if(det){
+      var room=155-lead.length-tail.length-2;
+      if(room>12)meta=lead+" "+cut(det,room)+"."+tail;
+    }
+    meta=cut(meta,155);
+    var card=det?cut(tn[1]+" "+det+".",155):tn[1];
+    var base=det?tn[1]+" "+det+".":tn[1];
+    var page=wordsCut(lead+(det?" Listing highlights: "+det+".":"")+" "+USE[cat]+" If you are searching for the "+s+", this page gives you a quick look at the details before you decide. Browse more "+c.word+" finds on VibeFind, where every pick is chosen for everyday living. "+(EXTRA[el("tone").value]||EXTRA.Cozy),120);
+    var ptitle=cut(s+" | "+c.title,100);
+    var pdesc=lead+(det?" "+cut(det,160)+".":"")+"\nFind more "+c.word+" finds on VibeFind. Tap to see the details. As an Amazon Associate I earn from qualifying purchases.\n\n"+tags(s,cat);
+    var alt=cut(det?s+", "+det:s,125);
+    return {seo:seo,meta:meta,card:card,ptitle:ptitle,pdesc:pdesc,alt:alt,page:page};
+  }
+  function copy(ta,btn){
+    var done=function(){var o=btn.textContent;btn.textContent="Copied";setTimeout(function(){btn.textContent=o},1400)};
+    try{
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(done,function(){fb()});return}
+    }catch(e){}
+    fb();
+    function fb(){try{ta.select();document.execCommand("copy");done()}catch(e){btn.textContent="Press Ctrl+C"}}
+  }
+  function render(r){
+    var box=el("fields");box.innerHTML="";
+    LIMITS.forEach(function(L,i){
+      var wrap=document.createElement("div");wrap.className="field";
+      var head=document.createElement("div");head.className="head";
+      var lab=document.createElement("label");lab.textContent=L[0];lab.htmlFor="f-"+L[2];
+      var right=document.createElement("div");right.style.cssText="display:flex;align-items:center;gap:10px";
+      var cnt=document.createElement("span");cnt.className="count";
+      var btn=document.createElement("button");btn.type="button";btn.className="ghost";btn.textContent="Copy";
+      right.append(cnt,btn);head.append(lab,right);
+      var ta=document.createElement("textarea");ta.id="f-"+L[2];ta.value=r[L[2]];
+      ta.style.minHeight=L[3]?"230px":(L[1]>200?"150px":(L[1]>100?"70px":"44px"));
+      function upd(){var n=L[3]?(ta.value.trim()?ta.value.trim().split(/\s+/).length:0):ta.value.length;if(L[3]){cnt.textContent=n+" words (aim for 80–120)";cnt.className="count"+(n>120||n<80?" over":"")}else{cnt.textContent=n+" / "+L[1];cnt.className="count"+(n>L[1]?" over":"")}}
+      ta.addEventListener("input",upd);upd();
+      btn.addEventListener("click",function(){copy(ta,btn)});
+      wrap.append(head,ta);box.appendChild(wrap);
+    });
+  }
+  el("tone").addEventListener("change",function(){if(!el("out").hidden)el("go").click()});
+  el("go").addEventListener("click",function(){
+    var raw=el("name").value.trim();
+    if(!raw){el("err").hidden=false;el("out").hidden=true;return}
+    el("err").hidden=true;
+    var f=el("flags"),m=(raw+" "+el("extra").value).match(FLAG);
+    if(m){f.hidden=false;f.textContent="Check before you publish: the product name includes “"+m[0].trim()+"”. Remove prices, rankings, or health claims you cannot back up."}
+    else f.hidden=true;
+    render(build());
+    el("out").hidden=false;
+    el("out").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+})();
+</script>
+</body>
+</html>
