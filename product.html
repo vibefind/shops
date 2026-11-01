@@ -93,6 +93,9 @@ header {
   gap: 24px;
   align-items: start;
 }
+.product.no-image {
+  grid-template-columns: minmax(0, 1fr);
+}
 .product img {
   display: block;
   width: 100%;
@@ -201,10 +204,8 @@ header {
       return;
     }
     document.title = product.name + " | VibeFind";
-
     const card = document.createElement("article");
     card.className = "product";
-
     const info = document.createElement("div");
     const category = document.createElement("div");
     category.className = "category";
@@ -215,7 +216,6 @@ header {
     description.className = "description";
     description.textContent = product.description || "";
     info.append(category, title, description);
-
     const affiliateUrl = safeUrl(product.affiliate_link);
     if (affiliateUrl) {
       const button = document.createElement("a");
@@ -226,20 +226,17 @@ header {
       button.textContent = "View on Amazon";
       info.appendChild(button);
     }
-
     // Explore More Finds button
     const explore = document.createElement("a");
     explore.href = "./#shop";
     explore.className = "more-finds-btn";
     explore.textContent = "Explore More Finds";
     info.appendChild(explore);
-
     const disclosure = document.createElement("p");
     disclosure.className = "disclosure";
     disclosure.textContent =
       "As an Amazon Associate I earn from qualifying purchases. Some links may be affiliate links.";
     info.appendChild(disclosure);
-
     // Only add the image column if there is a valid image
     const imageUrl = safeUrl(product.image_url);
     if (imageUrl) {
@@ -250,10 +247,10 @@ header {
       imageBox.appendChild(image);
       card.append(imageBox, info);
     } else {
+      card.classList.add("no-image");
       card.append(info);
     }
     area.replaceChildren(card);
-
     // You May Also Like section (skipped if the product has no category)
     if (product.category) {
       try {
