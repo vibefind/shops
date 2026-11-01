@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Details | VibeFind</title>
+<meta name="description" content="Explore curated fashion, home, beauty and kitchen finds at VibeFind.">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #faf7f1;
+  color: #503b30;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+header {
+  background: #fffdf9;
+  padding: 22px 7%;
+  border-bottom: 1px solid #eaded4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: #654638;
+  text-decoration: none;
+}
+.back {
+  color: #654638;
+  text-decoration: none;
+  font-size: 14px;
+}
+.container {
+  max-width: 950px;
+  margin: 45px auto;
+  padding: 20px;
+}
+.product {
+  background: white;
+  border: 1px solid #eaded4;
+  border-radius: 18px;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+}
+
+.product img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #faf7f1;
+}
+h1 {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  line-height: 1.25;
+}
+
+.category {
+  color: #98775f;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.description {
+  color: #716358;
+  font-size: 15px;
+  margin: 20px 0;
+}
+.shop {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #684b3a;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.disclosure {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #796b61;
+}
+@media (max-width: 650px) {
+  .product {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    gap: 15px;
+  }
+  h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="./">VibeFind.</a>
+  <a class="back" href="./">← Back to Home</a>
+</header>
+<main class="container">
+  <div id="product-area">Loading product...</div>
+</main>
+<script>
+(async function () {
+  const area = document.getElementById("product-area");
+  const id = new URLSearchParams(location.search).get("id");
+  if (!id || !/^[0-9a-f-]{36}$/i.test(id)) {
+    area.textContent = "Product not found.";
+    return;
+  }
+  const base = "https://heshxrukrkcsgpdjhzhe.supabase.co";
+  const key = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
+  function safeUrl(value) {
+    try {
+      const url = new URL(value);
+      return url.protocol === "https:" ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  try {
+    const endpoint =
+      base + "/rest/v1/products?id=eq." +
+      encodeURIComponent(id) +
+      "&select=name,category,description,image_url,affiliate_link&limit=1";
+    const response = await fetch(endpoint, {
+      headers: { apikey: key }
+    });
+    if (!response.ok) throw new Error("Request failed");
+    const products = await response.json();
+    const product = products[0];
+    if (!product) {
+      area.textContent = "Product not found.";
+      return;
+    }
+    document.title = product.name + " | VibeFind";
+    const card = document.createElement("article");
+    card.className = "product";
+    const imageBox = document.createElement("div");
+    const imageUrl = safeUrl(product.image_url);
+    if (imageUrl) {
+      const image = document.createElement("img");
+      image.src = imageUrl;
+      image.alt = product.name;
+      imageBox.appendChild(image);
+    }
+    const info = document.createElement("div");
+    const category = document.createElement("div");
+    category.className = "category";
+    category.textContent = product.category || "VibeFind Find";
+    const title = document.createElement("h1");
+    title.textContent = product.name || "Product";
+    const description = document.createElement("p");
+    description.className = "description";
+    description.textContent = product.description || ""; 
+    const disclosure = document.createElement("p");
+    disclosure.className = "disclosure";
+    disclosure.textContent =
+      "As an Amazon Associate I earn from qualifying purchases. Some links may be affiliate links.";
+    info.append(category, title, description);
+    const affiliateUrl = safeUrl(product.affiliate_link);
+    if (affiliateUrl) {
+      const button = document.createElement("a");
+      button.className = "shop";
+      button.href = affiliateUrl;
+      button.target = "_blank";
+      button.rel = "noopener noreferrer sponsored";
+      button.textContent = "Shop This Find";
+      info.appendChild(button);
+    }
+    info.appendChild(disclosure);
+    card.append(imageBox, info);
+    area.replaceChildren(card);
+  } catch (error) {
+    area.textContent = "Product temporarily unavailable.";
+    console.error(error);
+  }
+})();
+</script>
+</body>
+</html>
