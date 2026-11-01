@@ -6,95 +6,75 @@
 <title>Product Details | VibeFind</title>
 <meta name="description" content="Explore curated fashion, home, beauty and kitchen finds at VibeFind.">
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: #faf7f1;
-  color: #503b30;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-}
-header {
-  background: #fffdf9;
-  padding: 22px 7%;
-  border-bottom: 1px solid #eaded4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo {
-  font-family: Georgia, serif;
-  font-size: 28px;
+
+/* Explore More Finds button */
+.more-finds-btn {
+  display: block;
+  width: fit-content;
+  margin-top: 12px;
+  padding: 12px 22px;
+  border: 1px solid #684b3a;
+  border-radius: 8px;
+  color: #684b3a;
+  text-decoration: none;
   font-weight: bold;
-  color: #654638;
-  text-decoration: none;
-}
-.back {
-  color: #654638;
-  text-decoration: none;
-  font-size: 14px;
-}
-.container {
-  max-width: 950px;
-  margin: 45px auto;
-  padding: 20px;
-}
-.product {
-  background: white;
-  border: 1px solid #eaded4;
-  border-radius: 18px;
-  padding: 30px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
 }
 
-.product img {
+.more-finds-btn:hover {
+  background: #f4eee7;
+}
+
+/* Related products */
+.related-section {
+  margin-top: 35px;
+}
+
+.related-section h2 {
+  font-family: Georgia, serif;
+  color: #503b30;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.related-card {
+  background: #fff;
+  border: 1px solid #eaded4;
+  border-radius: 12px;
+  padding: 10px;
+  text-decoration: none;
+  color: #503b30;
+}
+
+.related-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: contain;
-  border-radius: 12px;
-  background: #faf7f1;
-}
-h1 {
-  font-family: Georgia, serif;
-  font-size: 32px;
-  line-height: 1.25;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.category {
-  color: #98775f;
+.related-card strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.related-card span {
+  display: block;
   font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  margin-top: 8px;
+  color: #795543;
 }
-.description {
-  color: #716358;
-  font-size: 15px;
-  margin: 20px 0;
-}
-.shop {
-  display: inline-block;
-  padding: 14px 28px;
-  background: #684b3a;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-}
-.disclosure {
-  margin-top: 25px;
-  font-size: 12px;
-  color: #796b61;
-}
+
 @media (max-width: 650px) {
-  .product {
-    grid-template-columns: 1fr;
-    padding: 18px;
-    gap: 15px;
+  .related-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  h1 { font-size: 26px; }
 }
+
 </style>
 </head>
 <body>
@@ -176,6 +156,71 @@ h1 {
     info.appendChild(disclosure);
     card.append(imageBox, info);
     area.replaceChildren(card);
+// Explore More Finds button
+const explore = document.createElement("a");
+explore.href = "./#shop";
+explore.className = "more-finds-btn";
+explore.textContent = "Explore More Finds";
+info.insertBefore(explore, disclosure);
+
+// You May Also Like section
+try {
+  const relatedEndpoint =
+    base + "/rest/v1/products?select=id,name,category,image_url" +
+    "&category=eq." + encodeURIComponent(product.category) +
+    "&order=created_at.desc&limit=40";
+
+  const relatedResponse = await fetch(relatedEndpoint, {
+    headers: { apikey: key }
+  });
+
+  if (!relatedResponse.ok) throw new Error("Related products unavailable");
+
+  const relatedProducts = (await relatedResponse.json())
+    .filter(item => item.id !== id)
+    .slice(0, 4);
+
+  if (relatedProducts.length) {
+    const section = document.createElement("section");
+    section.className = "related-section";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "You May Also Like";
+
+    const grid = document.createElement("div");
+    grid.className = "related-grid";
+
+    relatedProducts.forEach(item => {
+      const link = document.createElement("a");
+      link.className = "related-card";
+      link.href = "product.html?id=" + encodeURIComponent(item.id);
+
+      const imageUrl = safeUrl(item.image_url);
+      if (imageUrl) {
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = item.name || "VibeFind product";
+        image.loading = "lazy";
+        link.appendChild(image);
+      }
+
+      const name = document.createElement("strong");
+      name.textContent = item.name || "Product";
+
+      const view = document.createElement("span");
+      view.textContent = "View Product";
+
+      link.append(name, view);
+      grid.appendChild(link);
+    });
+
+    section.append(heading, grid);
+    area.appendChild(section);
+  }
+} catch (relatedError) {
+  console.warn("Related products could not load.", relatedError);
+}
+
 // Explore More Finds button
 const explore = document.createElement("a");
 explore.href = "./#shop";
