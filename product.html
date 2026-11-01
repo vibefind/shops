@@ -134,7 +134,6 @@ h1 {
   }
   const base = "https://heshxrukrkcsgpdjhzhe.supabase.co";
   const key = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
-
   function safeUrl(value) {
     try {
       const url = new URL(value);
@@ -143,7 +142,6 @@ h1 {
       return null;
     }
   }
-
   async function load(select) {
     const endpoint =
       base + "/rest/v1/products?id=eq." +
@@ -206,7 +204,6 @@ h1 {
       console.error(e);
     }
   }
-
   try {
     const products = await load("name,category,description,image_url,affiliate_link");
     const product = products[0];
@@ -214,14 +211,11 @@ h1 {
       area.textContent = "Product not found.";
       return;
     }
-
     document.title = product.name + " | VibeFind";
     const meta = document.querySelector('meta[name="description"]');
     if (meta && product.description) meta.content = product.description.slice(0, 155);
-
     const card = document.createElement("article");
     card.className = "product";
-
     const imageBox = document.createElement("div");
     const imageUrl = safeUrl(product.image_url);
     if (imageUrl) {
@@ -230,22 +224,16 @@ h1 {
       image.alt = product.name;
       imageBox.appendChild(image);
     }
-
     const info = document.createElement("div");
-
     const category = document.createElement("div");
     category.className = "category";
     category.textContent = product.category || "VibeFind Find";
-
     const title = document.createElement("h1");
     title.textContent = product.name || "Product";
-
     const description = document.createElement("p");
     description.className = "description";
     description.textContent = product.description || "";
-
     info.append(category, title, description);
-
     const affi<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -382,7 +370,6 @@ h1 {
   }
   const base = "https://heshxrukrkcsgpdjhzhe.supabase.co";
   const key = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
-
   function safeUrl(value) {
     try {
       const url = new URL(value);
@@ -391,7 +378,6 @@ h1 {
       return null;
     }
   }
-
   async function load(select) {
     const endpoint =
       base + "/rest/v1/products?id=eq." +
@@ -401,7 +387,6 @@ h1 {
     if (!response.ok) throw new Error("Request failed");
     return response.json();
   }
-
   async function loadRelated(categoryName) {
     try {
       const fields = "id,name,category,image_url";
@@ -454,7 +439,6 @@ h1 {
       console.error(e);
     }
   }
-
   try {
     const products = await load("name,category,description,image_url,affiliate_link");
     const product = products[0];
@@ -462,7 +446,6 @@ h1 {
       area.textContent = "Product not found.";
       return;
     }
-
     document.title = product.name + " | VibeFind";
     const meta = document.querySelector('meta[name="description"]');
     if (meta && product.description) meta.content = product.description.slice(0, 155);
@@ -478,22 +461,16 @@ h1 {
       image.alt = product.name;
       imageBox.appendChild(image);
     }
-
     const info = document.createElement("div");
-
     const category = document.createElement("div");
     category.className = "category";
     category.textContent = product.category || "VibeFind Find";
-
     const title = document.createElement("h1");
     title.textContent = product.name || "Product";
-
     const description = document.createElement("p");
     description.className = "description";
     description.textContent = product.description || "";
-
     info.append(category, title, description);
-
     const affiliateUrl = safeUrl(product.affiliate_link);
     if (affiliateUrl) {
       const button = document.createElement("a");
@@ -504,16 +481,13 @@ h1 {
       button.textContent = "View on Amazon";
       info.appendChild(button);
     }
-
     const disclosure = document.createElement("p");
     disclosure.className = "disclosure";
     disclosure.textContent =
       "As an Amazon Associate I earn from qualifying purchases. Some links may be affiliate links.";
     info.appendChild(disclosure);
-
     card.append(imageBox, info);
     area.replaceChildren(card);
-
     loadRelated(product.category);
   } catch (error) {
     area.textContent = "Product temporarily unavailable.";
@@ -532,16 +506,13 @@ h1 {
       button.textContent = "View on Amazon";
       info.appendChild(button);
     }
-
     const disclosure = document.createElement("p");
     disclosure.className = "disclosure";
     disclosure.textContent =
       "As an Amazon Associate I earn from qualifying purchases. Some links may be affiliate links.";
     info.appendChild(disclosure);
-
     card.append(imageBox, info);
     area.replaceChildren(card);
-
     loadRelated(product.category);
   } catch (error) {
     area.textContent = "Product temporarily unavailable.";
