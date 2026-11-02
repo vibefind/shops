@@ -1,222 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R10DT871CY"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-R10DT871CY');
 </script>
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover curated fashion, cozy home decor, kitchen essentials, beauty favorites, and organization finds at VibeFind. Explore everyday shopping inspiration.">
-  <title>VibeFind | Fashion,Home,Beauty & Everyday Finds</title>
-  <style>
-    :root {
-      --cream: #faf7f1;
-      --sand: #f0e7dc;
-      --brown: #604b3d;
-      --dark: #302b27;
-      --olive: #79765d;
-      --line: #e7ded3;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--cream);
-      color: var(--dark);
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    a { color: inherit; }
-    .wrap { max-width: 1150px; margin: auto; padding: 0 20px; }
-    header {
-      background: #fff;
-      border-bottom: 1px solid var(--line);
-      position: sticky;
-      top: 0;
-      z-index: 5;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      min-height: 75px;
-    }
-    .logo {
-      font: bold 30px Georgia, serif;
-      color: var(--brown);
-      text-decoration: none;
-    }
-    nav { display: flex; gap: 20px; flex-wrap: wrap; }
-    nav a { font-size: 14px; text-decoration: none; }
-    nav a:hover { color: var(--olive); }
-    .hero {
-      padding: 85px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #f7ede2, #e6d8c7);
-    }
-    .tag {
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--olive);
-      font-weight: bold;
-    }
-    h1, h2, h3 { font-family: Georgia, serif; }
-    h1 {
-      font-size: clamp(38px, 6vw, 65px);
-      max-width: 770px;
-      line-height: 1.12;
-      margin: 20px auto;
-    }
-    .hero p {
-      color: #6c6055;
-      max-width: 570px;
-      line-height: 1.7;
-      margin: 0 auto 28px;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--brown);
-      color: #fff;
-      border: none;
-      padding: 13px 23px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 14px;
-      cursor: pointer;
-    }
-    .btn:hover { background: var(--olive); }
-    section { padding: 65px 0; }
-    .heading { text-align: center; margin-bottom: 30px; }
-    .heading h2 { font-size: clamp(28px, 4vw, 40px); margin: 10px 0; }
-    .heading p { color: #756a61; font-size: 14px; }
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-    .category {
-      cursor: pointer;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 25px 10px;
-      text-align: center;
-      color: var(--brown);
-    }
-    .category:hover { background: var(--sand); }
-    .category span { display: block; font-size: 42px; margin-bottom: 8px; }
-    .category strong { font-size: 14px; }
-    .shop-area { background: #f4eee6; }
-    .controls {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 20px 0 30px;
-    }
-    #search {
-      flex: 1;
-      min-width: 180px;
-      border: 1px solid #ded4c8;
-      background: #fff;
-      border-radius: 6px;
-      padding: 14px 15px;
-      font-size: 15px;
-    }
-    #filter {
-      border: 1px solid #ded4c8;
-      border-radius: 6px;
-      background: #fff;
-      padding: 12px;
-      font-size: 14px;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-    .product {
-      background: #fff;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-image {
-      min-height: 210px;
-      background: linear-gradient(135deg, #e9ddcf, #f6efe6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 72px;
-    }
-    .product-image img {
-      display: block;
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-    }
-    .product-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .product-type {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 10px;
-      color: var(--olive);
-      font-weight: bold;
-    }
-    .product h3 { font-size: 21px; line-height: 1.3; margin: 12px 0; }
-    .product p { font-size: 13px; color: #71665d; line-height: 1.6; flex: 1; }
-    .product .btn { text-align: center; margin-top: 13px; }
-    .about { max-width: 730px; text-align: center; margin: auto; }
-    .about p { color: #71665d; line-height: 1.8; }
-    .callout { text-align: center; background: var(--brown); color: #fff; }
-    .callout p { color: #eee1d4; }
-    .callout .btn { background: #f5e8d7; color: var(--brown); }
-    .disclosure {
-      background: #eee6dc;
-      padding: 28px 0;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-    footer {
-      background: #302a25;
-      padding: 28px 15px;
-      color: #eee1d4;
-      text-align: center;
-      font-size: 12px;
-    }
-    @media(max-width: 800px) {
-      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .categories { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media(max-width: 520px) {
-      .nav { flex-direction: column; padding: 15px 0; }
-      nav { justify-content: center; }
-      .hero { padding: 65px 18px; }
-      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-      .product-image { min-height: 145px; font-size: 52px; }
-      .product-image img { height: 155px; }
-      .product-body { padding: 12px; }
-      .product h3 { font-size: 16px; }
-      .product p { font-size: 12px; }
-      .product .btn { font-size: 12px; padding: 11px 7px; }
-      .category { padding: 17px 8px; }
-    }
-/* ==================================
-   VIBEFIND STOREFRONT DESIGN V2
-   CSS-ONLY UPGRADE
-================================== */
+<meta name="description" content="Discover curated fashion, cozy home decor, kitchen essentials, beauty favorites, and organization finds at VibeFind. Explore everyday shopping inspiration.">
+<title>VibeFind | Fashion, Home, Beauty &amp; Everyday Finds</title>
+<style>
 :root {
   --cream: #fbf8f3;
   --sand: #f0e7dc;
@@ -224,584 +21,615 @@
   --dark: #302922;
   --olive: #77745b;
   --line: #e9dfd3;
+  --muted: #716358;
 }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
+  margin: 0;
   background: var(--cream);
   color: var(--dark);
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-/* PREMIUM NAVIGATION */
+a { color: inherit; }
+h1, h2, h3 { font-family: Georgia, serif; }
+.wrap { max-width: 1150px; margin: auto; padding: 0 20px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #9b8065;
+  outline-offset: 2px;
+}
+
+/* HEADER */
 header {
   background: rgba(255,253,249,.97);
   box-shadow: 0 2px 18px rgba(73,52,35,.05);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   min-height: 84px;
 }
 .logo {
-  font-family: Georgia, serif;
-  font-size: 34px;
+  font: bold 34px Georgia, serif;
   color: var(--brown);
   letter-spacing: -1.5px;
+  text-decoration: none;
 }
-nav a {
-  color: #5d5147;
-  font-weight: 500;
-  transition: color .2s;
-}
-nav a:hover {
-  color: var(--olive);
-}
-/* LUXURY HERO */
+nav { display: flex; gap: 20px; flex-wrap: wrap; }
+nav a { font-size: 14px; font-weight: 500; color: #5d5147; text-decoration: none; transition: color .2s; }
+nav a:hover { color: var(--olive); }
+
+/* HERO */
 .hero {
-  background:
-    radial-gradient(
-      circle at 85% 10%,
-      rgba(191,153,112,.18),
-      transparent 38%
-    ),
-    linear-gradient(140deg,#fcf7f0,#e9dac7);
   padding: 108px 22px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(191,153,112,.18), transparent 38%),
+    linear-gradient(140deg, #fcf7f0, #e9dac7);
+}
+.tag {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--olive);
+  font-weight: bold;
 }
 .hero h1 {
-  font-family: Georgia,serif;
+  font-size: clamp(38px, 6vw, 65px);
   font-weight: normal;
   letter-spacing: -2px;
   color: #4b3628;
+  max-width: 770px;
+  line-height: 1.12;
+  margin: 20px auto;
 }
 .hero p {
+  color: #6c6055;
   font-size: 16px;
+  max-width: 570px;
   line-height: 1.9;
+  margin: 0 auto 28px;
 }
-.tag, .eyebrow {
-  color: var(--olive);
-}
+
 /* BUTTONS */
 .btn {
   display: inline-block;
   background: var(--brown);
-  border-radius: 7px;
+  color: #fff;
+  border: none;
   padding: 14px 24px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 14px;
   font-weight: 600;
-  transition:
-    background .2s,
-    transform .2s,
-    box-shadow .2s;
+  cursor: pointer;
+  transition: background .2s, transform .2s, box-shadow .2s;
 }
 .btn:hover {
   background: #80644e;
   transform: translateY(-2px);
   box-shadow: 0 7px 16px rgba(68,45,30,.14);
 }
-/* CATEGORY CARDS */
+
+/* SECTIONS */
+section { padding: 65px 0; }
+.heading { text-align: center; margin-bottom: 30px; }
+.heading h2 { font-size: clamp(28px, 4vw, 40px); margin: 10px 0; color: #4b3628; letter-spacing: -1px; }
+.heading p { color: #756a61; font-size: 14px; }
+
+/* CATEGORY TILES */
 .categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 .category {
+  font: inherit;
+  width: 100%;
+  cursor: pointer;
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
+  padding: 0 0 15px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--brown);
   box-shadow: 0 4px 15px rgba(51,39,25,.04);
   transition: transform .2s, box-shadow .2s;
 }
-.category:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(51,39,25,.09);
+.category:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(51,39,25,.09); }
+.category .tile-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  margin: 0 0 12px;
+  background-image: url('da351e2d-f578-4686-b7b2-1e27611aad36.png');
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
 }
-/* SEARCH AND FILTER */
+.category strong { font-size: 14px; }
+
+/* SHOP AREA */
+.shop-area { background: #f4eee7; }
 .controls {
+  display: flex;
   gap: 14px;
-  margin-bottom: 34px;
+  flex-wrap: wrap;
+  margin: 20px 0 16px;
 }
-#search, #filter {
+#search, #sort {
   background: #fff;
   border: 1px solid #e2d5c7;
   border-radius: 9px;
   min-height: 50px;
-  outline-color: #9b8065;
+  font-size: 15px;
+  padding: 0 15px;
 }
-#search:focus, #filter:focus {
-  border-color: #9b8065;
+#search { flex: 1; min-width: 180px; }
+
+/* CATEGORY CHIPS */
+.chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
 }
+.chip {
+  font: inherit;
+  font-size: 14px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid #d8c7b9;
+  background: #fff;
+  color: var(--dark);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.chip:hover { background: var(--sand); }
+.chip[aria-pressed="true"] { background: var(--brown); border-color: var(--brown); color: #fff; }
+.result-count { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+
 /* PRODUCT GRID */
 .products {
   display: grid;
-  grid-template-columns: repeat(3,minmax(0,1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
   align-items: stretch;
 }
-/* PRODUCT CARDS *
 .product {
   overflow: hidden;
   border-radius: 15px;
   background: #fff;
   border: 1px solid #e9e0d6;
   box-shadow: 0 5px 22px rgba(54,38,25,.055);
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 34px rgba(54,38,25,.12);
-}
-/* PRODUCT IMAGES */
-
+.product:hover { transform: translateY(-5px); box-shadow: 0 14px 34px rgba(54,38,25,.12); }
 .product-image {
-  height: 270px;
-  min-height: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background: #f8f4ef;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  font-size: 56px;
 }
-
-.product-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 12px;
-}
-
-/* PRODUCT DETAILS */
-
-.product-body {
-  padding: 23px;
-}
-
+.product-image img { display: block; width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+.product-body { padding: 13px; display: flex; flex-direction: column; flex: 1; }
 .product-type {
-  font-size: 12px;
+  text-transform: uppercase;
+  font-size: 11px;
   letter-spacing: 2px;
   color: var(--olive);
   font-weight: 700;
 }
-
+.product-image-link { display: block; text-decoration: none; }
+.product h3 a { color: inherit; text-decoration: none; }
+.product h3 a:hover { color: var(--brown); text-decoration: underline; }
 .product h3 {
-  font-family: Georgia, serif;
-  font-size: 23px;
+  font-size: 15px;
   font-weight: normal;
-  line-height: 1.3;
-  margin: 12px 0;
+  line-height: 1.4;
+  margin: 9px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
-.product p {
-  color: #716358;
-  font-size: 14px;
-  line-height: 1.75;
-}
-
-/* FULL-WIDTH PRODUCT BUTTON */
-
-.product .btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  margin-top: 20px;
-}
-
-/* SECTIONS */
-
-.shop-area, .featured {
-  background: #f4eee7;
-}
-
-.section-heading h2,
-.heading h2 {
-  color: #4b3628;
-  letter-spacing: -1px;
-}
-
-/* TABLET */
-
-@media(max-width:900px) {
-  .products {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:18px;
-  }
-
-  .product-image {
-    height:240px;
-  }
-}
-
-/* MOBILE */
-
-@media(max-width:560px) {
-  .nav {
-    min-height:70px;
-  }
-
-  .logo {
-    font-size:29px;
-  }
-
-  .hero {
-    padding:72px 20px;
-  }
-
-  .hero h1 {
-    letter-spacing:-1px;
-  }
-
-  .products {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px;
-  }
-
-  .product {
-    border-radius:11px;
-  }
-
-  .product-image {
-    height:170px;
-  }
-
-  .product-image img {
-    padding:7px;
-  }
-
-  .product-body {
-    padding:13px;
-  }
-
-  .product h3 {
-    font-size:17px;
-    line-height:1.3;
-  }
-
-.product p { display: block; }
-    font-size:12px;
-    line-height:1.55;
-  }
-
-  .product .btn {
-    padding:12px 7px;
-    font-size:12px;
-  }
-
-  .category {
-    border-radius:11px;
-  }
-}
-
-/* VIBEFIND MOBILE LAYOUT FIX */
-@media (max-width: 600px) {
-  .products {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .product {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .product-image {
-    height: 300px;
-  }
-
-  .product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 15px;
-  }
-
-  .product-body {
-    padding: 22px;
-  }
-
-  .product h3 {
-    font-size: 23px;
-  }
-
-  .product p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .controls {
-    flex-direction: column;
-  }
-
-  #search, #filter {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .nav {
-    min-height: auto;
-    padding: 12px 0;
-  }
-
-  .logo {
-    font-size: 28px;
-  }
-
-  nav {
-    gap: 13px;
-  }
-
-  nav a {
-    font-size: 12px;
-  }
-}
-/* VibeFind compact boutique product cards */
-.products { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-.product-image { width: 100%; height: auto; min-height: 0; aspect-ratio: 1 / 1; background: #f8f4ef; }
-.product-image img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
-.product-body { padding: 13px; }
-.product h3 { font-size: 15px; line-height: 1.4; margin: 9px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .product p {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: var(--muted);
   font-size: 12px;
   line-height: 1.5;
   margin: 8px 0 12px;
+  flex: 1;
 }
-.product .btn { margin-top: auto; padding: 11px 8px; font-size: 12px; }
-@media (max-width: 900px) { .products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .product-image { height: auto; min-height: 0; aspect-ratio: 1 / 1; } .product-image img { height: 100%; padding: 5px; } .product-body { padding: 10px; } .product h3 { font-size: 13px; } }
+.product .btn { display: block; width: 100%; text-align: center; margin-top: auto; padding: 11px 8px; font-size: 12px; }
 
-  </style>
+/* LOAD MORE */
+.load-more-wrap { text-align: center; margin-top: 28px; }
+.load-more-wrap[hidden] { display: none; }
+.load-more {
+  font: inherit;
+  font-size: 15px;
+  min-height: 48px;
+  padding: 0 32px;
+  border-radius: 999px;
+  border: 1px solid var(--brown);
+  background: #fff;
+  color: var(--brown);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.load-more:hover { background: var(--brown); color: #fff; }
+
+/* EMPTY / STATUS */
+.status { grid-column: 1 / -1; text-align: center; color: var(--muted); padding: 40px 10px; }
+.status .btn { margin-top: 14px; }
+
+/* ABOUT / CALLOUT / DISCLOSURE / FOOTER */
+.about { max-width: 730px; text-align: center; margin: auto; }
+.about h2 { color: #4b3628; letter-spacing: -1px; }
+.about p { color: var(--muted); line-height: 1.8; }
+.callout { text-align: center; background: var(--brown); color: #fff; }
+.callout p { color: #eee1d4; }
+.callout .btn { background: #f5e8d7; color: var(--brown); margin: 6px; }
+.disclosure { background: #eee6dc; padding: 28px 0; font-size: 13px; line-height: 1.7; text-align: center; }
+footer { background: #302a25; padding: 28px 15px; color: #eee1d4; text-align: center; font-size: 12px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .products { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 800px) {
+  .categories { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .nav { flex-direction: column; min-height: auto; padding: 12px 0; }
+  .logo { font-size: 28px; }
+  nav { justify-content: center; gap: 13px; }
+  nav a { font-size: 12px; }
+  .hero { padding: 72px 20px; }
+  .hero h1 { letter-spacing: -1px; }
+  .controls { flex-direction: column; }
+  #search, #sort { width: 100%; min-width: 0; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; }
+  .chip { flex: 0 0 auto; }
+  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .product { border-radius: 11px; }
+  .product-body { padding: 10px; }
+  .product h3 { font-size: 13px; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a href="#" class="logo">VibeFind.</a>
-      <nav>
-        <a href="#categories">Categories</a>
-        <a href="#shop">Shop Finds</a>
-        <a href="#about">About</a>
-        <a href="#disclosure">Disclosure</a>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div class="hero">
-      <div class="tag"> · Home · Beauty · Lifestyle</div>
-      <h1>Beautiful Finds for Everyday Living</h1>
-      <p>Discover curated outfit ideas, cozy home touches, coffee essentials and beauty inspiration.</p>
-      <a href="#shop" class="btn">Explore the Finds</a>
-    </div>
-<section id="categories">
-  <div class="wrap">
-    <div class="heading">
-      <div class="tag">Explore Our Collections</div>
-      <h2>Shop by Category</h2>
-    </div>
-    <div class="categories">
-<button class="category" data-category="Fashion"
-        style="padding:0 0 15px;overflow:hidden;">
-  <span style="display:block;width:100%;aspect-ratio:3/2;margin:0 0 12px;background-image:url('da351e2d-f578-4686-b7b2-1e27611aad36.png');background-size:200% 200%;background-position:left top;background-repeat:no-repeat;"></span>
-  <strong>Fall Fashion</strong>
-</button>
-<button class="category" data-category="Home"
-        style="padding:0 0 15px;overflow:hidden;">
-  <span style="display:block;width:100%;aspect-ratio:3/2;margin:0 0 12px;background-image:url('da351e2d-f578-4686-b7b2-1e27611aad36.png');background-size:200% 200%;background-position:right top;background-repeat:no-repeat;"></span>
-  <strong>Cozy Home</strong>
-</button>
-<button class="category" data-category="Kitchen"
-        style="padding:0 0 15px;overflow:hidden;">
-  <span style="display:block;width:100%;aspect-ratio:3/2;margin:0 0 12px;background-image:url('da351e2d-f578-4686-b7b2-1e27611aad36.png');background-size:200% 200%;background-position:left bottom;background-repeat:no-repeat;"></span>
-  <strong>Kitchen &amp; Coffee</strong>
-</button>
-<button class="category" data-category="Beauty"
-        style="padding:0 0 15px;overflow:hidden;">
-  <span style="display:block;width:100%;aspect-ratio:3/2;margin:0 0 12px;background-image:url('da351e2d-f578-4686-b7b2-1e27611aad36.png');background-size:200% 200%;background-position:right bottom;background-repeat:no-repeat;"></span>
-  <strong>Beauty Finds</strong>
-</button>
-    </div>
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">VibeFind.</a>
+    <nav>
+      <a href="#categories">Categories</a>
+      <a href="#shop">Shop All Finds</a>
+      <a href="#about">About</a>
+      <a href="#disclosure">Disclosure</a>
+    </nav>
   </div>
-</section>
-    </section>
-    <section class="shop-area" id="shop">
-      <div class="wrap">
-        <div class="heading">
-          <div class="tag">Curated by VibeFind</div>
-          <h2>Discover Our Favorite Finds</h2>
-          <p>Browse inspiration and explore the collections.</p>
-        </div>
-        <div class="controls">
-          <input type="search" id="search" placeholder="Search products..." aria-label="Search products">
-          <select id="filter" aria-label="Filter category">
-            <option value="All">All Categories</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Home">Cozy Home</option>
-            <option value="Kitchen">Kitchen & Coffee</option>
-            <option value="Beauty">Beauty</option>
-          </select>
-        </div>
-        <div class="products" id="productGrid"></div>
+</header>
+<main>
+  <div class="hero">
+    <div class="tag">Fashion · Home · Beauty · Lifestyle</div>
+    <h1>Beautiful Finds for Everyday Living</h1>
+    <p>Discover curated outfit ideas, cozy home touches, coffee essentials and beauty inspiration.</p>
+    <a href="#shop" class="btn">Explore the Finds</a>
+  </div>
+  <section id="categories">
+    <div class="wrap">
+      <div class="heading">
+        <div class="tag">Explore Our Collections</div>
+        <h2>Shop by Category</h2>
       </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap about">
-        <div class="tag">About VibeFind</div>
-        <h2>Curated Finds, Everyday Inspiration</h2>
-        <p>VibeFind brings together outfit inspiration, cozy home ideas, useful kitchen finds and beauty discoveries in one place.</p>
+      <div class="categories">
+        <button type="button" class="category" data-category="Fashion">
+          <span class="tile-img" style="background-position:left top;"></span>
+          <strong>Fall Fashion</strong>
+        </button>
+        <button type="button" class="category" data-category="Home">
+          <span class="tile-img" style="background-position:right top;"></span>
+          <strong>Cozy Home</strong>
+        </button>
+        <button type="button" class="category" data-category="Kitchen">
+          <span class="tile-img" style="background-position:left bottom;"></span>
+          <strong>Kitchen &amp; Coffee</strong>
+        </button>
+        <button type="button" class="category" data-category="Beauty">
+          <span class="tile-img" style="background-position:right bottom;"></span>
+          <strong>Beauty Finds</strong>
+        </button>
       </div>
-    </section>
-<section class="callout">
-  <div class="wrap">
-    <h2>Explore More VibeFind Collections</h2>
-    <p>See curated product lists and outfit ideas.</p>
-    <a class="btn"
-       href="https://benable.com/vibefind"
-       target="_blank"
-       rel="noopener noreferrer">
-      Visit VibeFind on Benable
-    </a>
-    <a class="btn"
-       href="https://www.amazon.com/shop/influencer-62370834"
-       target="_blank"
-       rel="noopener noreferrer sponsored"
-       style="margin:10px;">
-      Shop My Amazon Storefront
-    </a>
+    </div>
+  </section>
+  <section class="shop-area" id="shop">
+    <div class="wrap">
+      <div class="heading">
+        <div class="tag">Curated by VibeFind</div>
+        <h2>Discover Our Favorite Finds</h2>
+        <p>Browse inspiration and explore the collections.</p>
+      </div>
+      <div class="controls">
+        <input type="search" id="search" placeholder="Search finds..." aria-label="Search products">
+        <select id="sort" aria-label="Sort products">
+          <option value="newest">Newest</option>
+          <option value="az">Name A–Z</option>
+        </select>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      <p class="result-count" id="resultCount" aria-live="polite"></p>
+      <div class="products" id="productGrid"></div>
+      <div class="load-more-wrap" id="loadMoreWrap" hidden>
+        <button type="button" class="load-more" id="loadMore">Load more finds</button>
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="wrap about">
+      <div class="tag">About VibeFind</div>
+      <h2>Curated Finds, Everyday Inspiration</h2>
+      <p>VibeFind brings together outfit inspiration, cozy home ideas, useful kitchen finds and beauty discoveries in one place.</p>
+    </div>
+  </section>
+  <section class="callout">
+    <div class="wrap">
+      <h2>Explore More VibeFind Collections</h2>
+      <p>See curated product lists and outfit ideas.</p>
+      <a class="btn" href="https://benable.com/vibefind" target="_blank" rel="noopener noreferrer">Visit VibeFind on Benable</a>
+      <a class="btn" href="https://www.amazon.com/shop/influencer-62370834" target="_blank" rel="noopener noreferrer sponsored">Shop My Amazon Storefront</a>
+    </div>
+  </section>
+  <div class="disclosure" id="disclosure">
+    <div class="wrap">
+      <h3>Affiliate Disclosure</h3>
+      <p>Some links on this website may be affiliate links. We may earn commissions from qualifying purchases at no additional cost to you.</p>
+      <p>As an Amazon Associate I earn from qualifying purchases.</p>
+    </div>
   </div>
-</section>
-<div class="disclosure" id="disclosure" style="text-align:center;">
-  <div class="wrap">
-    <h3>Affiliate Disclosure</h3>
-    <p>
-      Some links on this website may be affiliate links.
-      We may earn commissions from qualifying purchases
-      at no additional cost to you.
-    </p>
-    <p>
-      As an Amazon Associate I earn from qualifying purchases.
-    </p>
-  </div>
-</div>
-  </main>
-  <footer>
-    <p>© VibeFind · Thoughtful Finds for Everyday Living</p>
-    <p>Curated inspiration for fashion, home, kitchen and beauty.</p>
-  </footer>
-  <script>
-    const SUPABASE_URL = "https://heshxrukrkcsgpdjhzhe.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
-    const grid = document.getElementById("productGrid");
-    const search = document.getElementById("search");
-    const filter = document.getElementById("filter");
-    
-    let products = [];
-    const icons = {
-      fashion: "🍂",
-      home: "🏡",
-      kitchen: "☕",
-      beauty: "💅",
-      tech: "💻"
-    };
+</main>
+<footer>
+  <p>© VibeFind · Thoughtful Finds for Everyday Living</p>
+  <p>Curated inspiration for fashion, home, kitchen and beauty.</p>
+</footer>
+<script>
+const SUPABASE_URL = "https://heshxrukrkcsgpdjhzhe.supabase.co";
+const SUPABASE_KEY = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
 
-    function normalize(value) {
-      return String(value || "").trim().toLowerCase();
-    }
+const grid = document.getElementById("productGrid");
+const search = document.getElementById("search");
+const sortSelect = document.getElementById("sort");
+const chipsBox = document.getElementById("chips");
+const countEl = document.getElementById("resultCount");
+const loadMoreWrap = document.getElementById("loadMoreWrap");
+const loadMoreBtn = document.getElementById("loadMore");
+const PAGE_SIZE = 12;
+const icons = { fashion: "🍂", home: "🏡", kitchen: "☕", beauty: "💅", tech: "💻" };
+const labels = { fashion: "Fashion", home: "Cozy Home", kitchen: "Kitchen & Coffee", beauty: "Beauty" };
+let products = [];
+let categories = [];            // [{key, label}]
+const urlParams = new URLSearchParams(location.search);
+const state = {
+  q: urlParams.get("q") || "",
+  category: normalize(urlParams.get("category")) || "all",
+  sort: urlParams.get("sort") === "az" ? "az" : "newest",
+  shown: PAGE_SIZE
+};
 
-    function httpsUrl(value) {
-      try {
-        const url = new URL(value);
-        return url.protocol === "https:" ? url.href : null;
-      } catch {
-        return null;
-      }
-    }
-
-    async function loadProducts() {
-      grid.textContent = "Loading products...";
-      try {
-        
-const endpoint = SUPABASE_URL + "/rest/v1/products?select=id,name,category,description,image_url,affiliate_link&order=created_at.desc";
-        const response = await fetch(endpoint, {
-          headers: { "apikey": SUPABASE_KEY }
-        });
-        if (!response.ok) {
-          throw new Error("Database error: " + response.status);
-        }
-        products = await response.json();
-        renderProducts();
-      } catch (error) {
-        grid.textContent = error.message;
-      }
-    }
-
-    function renderProducts() {
-      const term = normalize(search.value);
-      const chosen = normalize(filter.value);
-      const matching = products.filter(product => {
-        const category = normalize(product.category);
-        const categoryMatches = chosen === "all" || chosen === category;
-        const searchMatches = normalize(
-          (product.name || "") + " " + (product.category || "") + " " + (product.description || "")
-        ).includes(term);
-        return categoryMatches && searchMatches;
-      });
-
-      grid.replaceChildren();
-
-      if (!matching.length) {
-        grid.textContent = "No matching products found.";
-        return;
-      }
-
-      matching.forEach(product => {
-        const card = document.createElement("article");
-        card.className = "product";
-
-        const photo = document.createElement("div");
-        photo.className = "product-image";
-        const image = httpsUrl(product.image_url);
-        if (image) {
-          const img = document.createElement("img");
-          img.src = image;
-          img.alt = product.name || "Product";
-          img.loading = "lazy";
-          photo.appendChild(img);
-        } else {
-          photo.textContent = icons[normalize(product.category)] || "🛍️";
-        }
-        const body = document.createElement("div");
-        body.className = "product-body";
-        const type = document.createElement("span");
-        type.className = "product-type";
-        type.textContent = product.category || "Finds";
-        const title = document.createElement("h3");
-        title.textContent = product.name || "Product";
-        const description = document.createElement("p");
-        description.textContent = product.description || "";
-const productLink = product.id
-  ? "product.html?id=" + encodeURIComponent(product.id)
-  : null;
-const button = document.createElement(productLink ? "a" : "span");
-button.className = "btn";
-button.textContent = productLink ? "View Product" : "Link unavailable";
-if (productLink) {
-  button.href = productLink;
+function normalize(value) {
+  return String(value || "").trim().toLowerCase();
 }
-body.append(type, title, description, button);
-        card.append(photo, body);
-        grid.appendChild(card);
-      });
-    }
-    search.addEventListener("input", renderProducts);
-    filter.addEventListener("change", renderProducts);
-    document.querySelectorAll(".category").forEach(button => {
-      button.addEventListener("click", () => {
-        const category = normalize(button.dataset.category);
-        const option = Array.from(filter.options).find(o => normalize(o.value) === category);
-        filter.value = option ? option.value : "All";
-        renderProducts();
-        document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
-      });
+function httpsUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : null;
+  } catch (e) {
+    return null;
+  }
+}
+function showStatus(text, withReset) {
+  grid.replaceChildren();
+  const box = document.createElement("div");
+  box.className = "status";
+  const p = document.createElement("p");
+  p.textContent = text;
+  box.appendChild(p);
+  if (withReset) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "btn";
+    b.textContent = "Clear filters";
+    b.addEventListener("click", function () {
+      state.q = "";
+      state.category = "all";
+      search.value = "";
+      syncUI();
     });
-    loadProducts();
-  </script>
+    box.appendChild(b);
+  }
+  grid.appendChild(box);
+}
+async function loadProducts() {
+  showStatus("Loading finds...");
+  try {
+    const endpoint = SUPABASE_URL + "/rest/v1/products?select=id,name,category,description,image_url,affiliate_link&order=created_at.desc";
+    const response = await fetch(endpoint, { headers: { apikey: SUPABASE_KEY } });
+    if (!response.ok) throw new Error("Request failed: " + response.status);
+    products = await response.json();
+    buildCategories();
+    search.value = state.q;
+    sortSelect.value = state.sort;
+    if (state.category !== "all" && !categories.some(c => c.key === state.category)) {
+      state.category = "all";
+    }
+    syncUI();
+  } catch (error) {
+    console.error(error);
+    showStatus("Finds are temporarily unavailable. Please try again later.");
+  }
+}
+function buildCategories() {
+  const seen = new Map();
+  products.forEach(function (p) {
+    const key = normalize(p.category);
+    if (key && !seen.has(key)) seen.set(key, labels[key] || p.category.trim());
+  });
+  categories = Array.from(seen, function (e) { return { key: e[0], label: e[1] }; });
+}
+function renderChips() {
+  chipsBox.replaceChildren();
+  [{ key: "all", label: "All" }].concat(categories).forEach(function (c) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.textContent = c.label;
+    b.setAttribute("aria-pressed", String(state.category === c.key));
+    b.addEventListener("click", function () {
+      state.category = c.key;
+      syncUI();
+    });
+    chipsBox.appendChild(b);
+  });
+}
+function updateUrl() {
+  const p = new URLSearchParams();
+  if (state.q) p.set("q", state.q);
+  if (state.category !== "all") p.set("category", state.category);
+  if (state.sort !== "newest") p.set("sort", state.sort);
+  const qs = p.toString();
+  history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + location.hash);
+}
+function syncUI() {
+  state.shown = PAGE_SIZE;
+  renderChips();
+  renderProducts();
+  updateUrl();
+}                                                              
+function renderProducts() {
+  const term = normalize(state.q);
+  let matching = products.filter(function (product) {
+    const category = normalize(product.category);
+    const categoryOk = state.category === "all" || state.category === category;
+    const text = normalize((product.name || "") + " " + (product.category || "") + " " + (product.description || ""));
+    return categoryOk && text.includes(term);
+  });
+  if (state.sort === "az") {
+    matching = matching.slice().sort(function (a, b) {
+      return (a.name || "").localeCompare(b.name || "");
+    });
+  }
+
+  const visible = matching.slice(0, state.shown);
+  countEl.textContent = matching.length > visible.length
+    ? "Showing " + visible.length + " of " + matching.length + " finds"
+    : matching.length + (matching.length === 1 ? " find" : " finds");
+  loadMoreWrap.hidden = matching.length <= visible.length;
+
+  if (!matching.length) {
+    showStatus("No finds match your search. Try another keyword or category.", true);
+    return;
+  }                              
+  grid.replaceChildren();
+  visible.forEach(function (product) {
+    const card = document.createElement("article");
+    card.className = "product";
+
+    const productLink = product.id ? "product.html?id=" + encodeURIComponent(product.id) : null;
+
+    const photo = document.createElement("div");
+    photo.className = "product-image";
+    const image = httpsUrl(product.image_url);
+    if (image) {
+      const img = document.createElement("img");
+      img.src = image;
+      img.alt = product.name || "Product";
+      img.loading = "lazy";
+      photo.appendChild(img);
+    } else {
+      photo.textContent = icons[normalize(product.category)] || "🛍️";
+    }
+
+    const body = document.createElement("div");
+    body.className = "product-body";
+    const type = document.createElement("span");
+    type.className = "product-type";
+    type.textContent = product.category || "Finds";
+    const title = document.createElement("h3");
+    if (productLink) {
+      const titleLink = document.createElement("a");
+      titleLink.href = productLink;
+      titleLink.textContent = product.name || "Product";
+      title.appendChild(titleLink);
+    } else {
+      title.textContent = product.name || "Product";
+    }
+    const description = document.createElement("p");
+    description.textContent = product.description || "";
+    const button = document.createElement(productLink ? "a" : "span");
+    button.className = "btn";
+    button.textContent = productLink ? "View Product" : "Link unavailable";
+    if (productLink) button.href = productLink;
+
+    body.append(type, title, description, button);
+    if (productLink) {
+      const imageLink = document.createElement("a");
+      imageLink.className = "product-image-link";
+      imageLink.href = productLink;
+      imageLink.setAttribute("aria-label", product.name || "View product");
+      imageLink.appendChild(photo);
+      card.append(imageLink, body);
+    } else {
+      card.append(photo, body);
+    }
+    grid.appendChild(card);
+  });
+}
+search.addEventListener("input", function () {
+  state.q = search.value;
+  state.shown = PAGE_SIZE;
+  renderProducts();
+  updateUrl();
+});
+sortSelect.addEventListener("change", function () {
+  state.sort = sortSelect.value;
+  state.shown = PAGE_SIZE;
+  renderProducts();
+  updateUrl();
+});
+document.querySelectorAll(".category").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const key = normalize(button.dataset.category);
+    state.category = categories.some(c => c.key === key) ? key : "all";
+    syncUI();
+    document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+loadMoreBtn.addEventListener("click", function () {
+  state.shown += PAGE_SIZE;
+  renderProducts();
+});
+
+loadProducts();
+</script>
 </body>
 </html>
