@@ -15,7 +15,6 @@
   </style>
 </head>
 <body>
-
   <!-- Login Section -->
   <div id="loginBox">
     <h2>Admin Login</h2>
@@ -28,7 +27,6 @@
       <button type="submit" id="loginBtn">Sign In</button>
     </form>
   </div>
-
   <!-- Admin Panel Section -->
   <div id="adminBox" class="hidden">
     <h2>Add New Product</h2>
@@ -47,30 +45,23 @@
 </select>
       <label>Description</label>
       <textarea id="description" rows="4" required></textarea>
-
       <label>Image URL (HTTPS only)</label>
       <input type="url" id="image" placeholder="https://...">
-
       <label>Affiliate Link (HTTPS only)</label>
       <input type="url" id="affiliate" placeholder="https://..." required>
-
       <button type="submit" id="saveBtn">Save Product</button>
     </form>
     <button id="logoutBtn" style="margin-top: 20px; background: #64748b;">Sign Out</button>
   </div>
-
   <script>
     // STEP 1: CONFIGURATION
     const SUPABASE_URL = "https://heshxrukrkcsgpdjhzhe.supabase.co";
     const SUPABASE_KEY = "sb_publishable_SNzkZDVCh3xTDGRTXR2_TA_hkrzX-7Q";
-
     const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
     const loginBox = document.getElementById("loginBox");
     const adminBox = document.getElementById("adminBox");
     const loginStatus = document.getElementById("loginStatus");
     const productStatus = document.getElementById("productStatus");
-
     async function checkAdmin() {
       const { data: userData, error: authError } = await db.auth.getUser();
       if (authError || !userData.user) {
@@ -78,13 +69,11 @@
         loginBox.classList.remove("hidden");
         return;
       }
-      
       const { data, error } = await db
         .from("admin_users")
         .select("user_id")
         .eq("user_id", userData.user.id)
         .maybeSingle();
-        
       if (error || !data) {
         adminBox.classList.add("hidden");
         loginBox.classList.remove("hidden");
@@ -92,17 +81,14 @@
         await db.auth.signOut();
         return;
       }
-      
       loginStatus.textContent = "";
       loginBox.classList.add("hidden");
       adminBox.classList.remove("hidden");
       document.getElementById("welcome").textContent = "Signed in as " + userData.user.email;
     }
-
     // Check login state on page load
     checkAdmin();
-
-    document.getElementById("loginForm").addEventListener("submit", async (event) => {
+   document.getElementById("loginForm").addEventListener("submit", async (event) => {
       event.preventDefault();
       if (!db) {
         loginStatus.textContent = "Supabase connection is not ready.";
@@ -125,40 +111,33 @@
         button.disabled = false;
       }
     });
-
     document.getElementById("logoutBtn").addEventListener("click", async () => {
       await db.auth.signOut();
       window.location.reload();
     });
-
     document.getElementById("productForm").addEventListener("submit", async (event) => {
       event.preventDefault();
       const button = document.getElementById("saveBtn");
       button.disabled = true;
-      productStatus.textContent = "Saving...";
-      
+      productStatus.textContent = "Saving...";    
       const name = document.getElementById("name").value.trim();
       const category = document.getElementById("category").value;
       const description = document.getElementById("description").value.trim();
       const image = document.getElementById("image").value.trim();
-      const affiliate = document.getElementById("affiliate").value.trim();
-      
+      const affiliate = document.getElementById("affiliate").value.trim();   
       try {
         const validHttps = (value) => new URL(value).protocol === "https:";
         if (!validHttps(affiliate) || (image && !validHttps(image))) {
           throw new Error("Use valid HTTPS links.");
-        }
-        
-        const { error } = await db.from("products").insert({
+        }    
+      const { error } = await db.from("products").insert({
           name,
           category,
           description,
           image_url: image || null,
           affiliate_link: affiliate
-        });
-        
-        if (error) throw error;
-        
+        });   
+        if (error) throw error;      
         productStatus.style.color = "#16a34a";
         productStatus.textContent = "Product saved successfully!";
         document.getElementById("productForm").reset();
